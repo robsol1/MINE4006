@@ -256,7 +256,8 @@ In this section we will conduct the initial data import as well as do some basic
 
 # open libraries
 library(readxl)
-library(tidyverse)
+library(dplyr)
+#library(tidyverse)
 library(data.table)
 library(ggplot2)
 ```
