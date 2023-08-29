@@ -257,8 +257,7 @@ In this section we will conduct the initial data import as well as do some basic
 # open libraries
 library(readxl)
 library(dplyr)
-#library(tidyverse)
-library(data.table)
+#library(data.table)
 library(ggplot2)
 ```
 
@@ -278,8 +277,8 @@ Read the Convert text format to date format and create two new columns using mut
 safety_data <- safety_data %>% 
   mutate(
     Date =as.Date(Date,"%d/%m/%Y"),
-    month=month(Date),
-         year=year(Date))
+    month=format(Date,"%m"),
+         year=format(Date,"%Y"))
 ```
 
 ### Quick Check on Numbers
@@ -887,10 +886,13 @@ print(p)
 Noting that the sequence of factors is constant and arranged by the overal rank over rthe full period. As such in any one year (say 2010) the chart is not a true Pareto chart 
 
 ```{r}
+
 top_10_body_part_annual_trend <- top_10_body_part_data %>% 
   group_by(year,BodyPart) %>% 
   summarise(n_events=n()) 
-
+top_10_body_part_annual_trend$BodyPart <-
+  factor(top_10_body_part_annual_trend$BodyPart ,
+         levels = top_10_body_parts$BodyPart[order(-top_10_body_parts$n)])
 p <- top_10_body_part_annual_trend %>%
   ggplot(aes(x = BodyPart, y = n_events, fill = BodyPart)) +
   geom_col(alpha = 1) +
