@@ -1,4 +1,5 @@
 ---
+#https://bookdown.org/yihui/rmarkdown/html-document.html#
 title: "Visualising Safety data"
 author: "Rob Solomon"
 date: "2023-06-30"
@@ -20,11 +21,11 @@ output:
 }
 </style>
 
-```{r setup, include=FALSE, message=FALSE}
+```{r setup, include=FALSE, message=FALSE, tidy=TRUE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE,warning = FALSE)
 ```
 
-# Learning Outcomes and Purpose of the Workshop {.tabset}
+# Learning Outcomes and Purpose of the Workshop {.tabset  .tabset-pills}
 
 ## Introduction
 
@@ -82,7 +83,7 @@ overview of the tools before we get started. Hopefully we can pick up
 some additional tips along the way but there are many on-line resources
 to help you when needed.
 
-## The Technology Stack {.tabset}
+## The Technology Stack {.tabset  .tabset-pills}
 
 ### Introduction
 
@@ -134,7 +135,7 @@ A graphical representation of the environment.
 ![](Stack.png)
 
 
-# RStudio Some More Detail {.tabset}
+# RStudio Some More Detail {.tabset  .tabset-pills}
 
 ## Introduction
 
@@ -168,7 +169,7 @@ this will open a 4th pane in the top left of the screen
 
 ![](Rstudio.png)
 
-## The Structure of an R Markdown Document {.tabset}
+## The Structure of an R Markdown Document {.tabset  .tabset-pills}
 
 ### Introduction
 
@@ -240,9 +241,9 @@ Central Repository of an array of useful cheat sheets
 <https://www.rstudio.com/resources/cheatsheets/>
 
 
-# Conducting Analysis of Safety Data {.tabset}
+# Conducting Analysis of Safety Data {.tabset  .tabset-pills}
 
-## Initial Loading and Opening of Libraries {.tabset}
+## Initial Loading and Opening of Libraries {.tabset  .tabset-pills}
 
 ### Introduction
 
@@ -274,11 +275,12 @@ safety_data <- read_excel("safety data - Dr Apurna Ghosh.xlsx")
 Read the Convert text format to date format and create two new columns using mutate.
 
 ```{r}
-safety_data <- safety_data %>% 
-  mutate(
-    Date =as.Date(Date,"%d/%m/%Y"),
-    month=month(Date),
-         year=year(Date))
+safety_data <- safety_data %>%
+mutate(
+Date = as.Date(Date, "%d/%m/%Y"),
+month = month(Date),
+year = year(Date)
+)
 ```
 
 ### Quick Check on Numbers
@@ -299,13 +301,13 @@ print(paste0("There are ",nrow(multiple)," EmployeeID's with multiple events"))
 
 ```
 
-## Simple Visualisation {.tabset}
+## Simple Visualisation {.tabset  .tabset-pills}
 
 ### Introduction
 
 In this section we will introduce the powerful graphics package ggplot and give some helpful code snippets.
 
-### Introduction - a Basic Chart {.tabset}
+### Introduction - a Basic Chart {.tabset  .tabset-pills}
 
 #### Introduction - A Basic Run Chart
 
@@ -396,7 +398,7 @@ The default smoothing function is a centralised estimate of the current value.  
 
 The advantage of this technique is that the smoothed trend does not lag the current performance as would a moving average based on historic data.  The disadvantage is that at the end of the graph, the available data to produce a centralised estimate reduces and estimate error increases.
 
-#### More Aesthetic changes to charts {.tabset}
+#### More Aesthetic changes to charts {.tabset  .tabset-pills}
 
 ##### Change Colour of Line
 
@@ -446,7 +448,7 @@ p1 <- p+
 plot(p1)
 ```
 
-## Team Task {.tabset}
+## Team Task {.tabset  .tabset-pills}
 
 ### Introduction
 
@@ -539,7 +541,7 @@ If the last point shows a step increase from the previous point this could be be
 
 Traditional moving averages have limited statistical significance.  Using the geom_smooth() trend line and the Standard Error band will be more statistically valid, but as I have found, more difficult to sell in an organisation.
 
-### Answering the question {.tabset}
+### Answering the question {.tabset  .tabset-pills}
 
 #### Introduction
 
@@ -597,7 +599,7 @@ The use of statistical process control is an important topic but we will not cov
 
 
 
-## Traditional 3 Moving Average {.tabset}
+## Traditional 3 Moving Average {.tabset  .tabset-pills}
 
 ### Introduction
 
@@ -667,7 +669,7 @@ p <- trend1 %>% ggplot() +
 p
 ```
 
-## Multiple lines on the same chart {.tabset}
+## Multiple lines on the same chart {.tabset  .tabset-pills}
 
 ### Introduction
 
@@ -741,7 +743,7 @@ print(p1)
 ```
 
 
-## A More Complex Example {.tabset}
+## A More Complex Example {.tabset  .tabset-pills}
 
 Produce a series of plots on the trends of the top 10 body part locations
 
@@ -776,7 +778,7 @@ top_10_body_part_trend <- top_10_body_part_data %>%
 top_10_body_part_trend
 
 ```
-### Graphical Output {.tabset}
+### Graphical Output {.tabset  .tabset-pills}
 
 
 #### Graphical Output
@@ -824,7 +826,7 @@ p <- top_10_body_part_trend %>%
 print(p)
 ```
 
-## Pareto Charts {.tabset} 
+## Pareto Charts {.tabset  .tabset-pills} 
 
 ### Introduction
 
